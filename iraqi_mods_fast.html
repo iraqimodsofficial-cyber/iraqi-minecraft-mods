@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080b0d">
+<meta name="description" content="IRAQI MODS — مكتبة مودات ماينكرافت بيدروك العراقية">
+<title>IRAQI MODS 🇮🇶</title>
+<style>
+:root{--accent:#42f5a7;--bg:#080b0d;--panel:#111719;--text:#f3f7f5;--muted:#9aa9a3;--line:#26352e}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;min-height:100vh}
+a,button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.wrap{width:min(1000px,92%);margin:auto}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 0;position:relative}
+.brand{font-weight:900;letter-spacing:.5px}
+.menu-wrap{position:relative}
+.dots{width:42px;height:42px;border:1px solid var(--line);border-radius:11px;background:var(--panel);color:var(--text);font-size:24px}
+.menu{display:none;position:absolute;top:48px;left:0;width:190px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px;z-index:5}
+.menu.open{display:grid;gap:4px}
+.menu button{border:0;background:transparent;color:var(--text);text-align:right;padding:10px;border-radius:8px}
+.menu button:hover{background:#ffffff0c}
+.hero{text-align:center;padding:28px 0 24px}
+.avatar{width:86px;height:86px;object-fit:cover;border-radius:22px;border:1px solid var(--line)}
+.placeholder{display:grid;place-items:center;margin:auto;background:var(--panel);color:var(--accent);font-size:30px;font-weight:900}
+.hidden{display:none!important}
+h1{font-size:clamp(28px,5vw,44px);margin:12px 0 6px}
+.accent{color:var(--accent)}
+.sub{color:var(--muted);line-height:1.8;max-width:600px;margin:0 auto}
+.socials{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:17px 0}
+.socials a{color:var(--text);text-decoration:none;border:1px solid var(--line);padding:8px 12px;border-radius:10px;background:#ffffff04}
+.socials a:hover{border-color:var(--accent)}
+.banner{height:120px;border:1px solid var(--line);border-radius:15px;overflow:hidden;position:relative;max-width:800px;margin:20px auto 0;background:linear-gradient(110deg,#171e1b,#101515)}
+.banner img{width:100%;height:100%;object-fit:cover;display:none}
+.banner-text{position:absolute;inset:0;display:grid;place-items:center;font-weight:850;letter-spacing:2px;color:#dce8e1}
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:20px 0 13px}
+h2{font-size:22px;margin:0}
+.search,.field{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:#101619;color:var(--text);outline:none}
+.search{max-width:330px}
+.search:focus,.field:focus{border-color:var(--accent)}
+.mods{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;padding-bottom:36px}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:14px;padding:30px 15px;line-height:1.8}
+.mod-card{overflow:hidden;border:1px solid var(--line);background:var(--panel);border-radius:14px}
+.mod-img{width:100%;height:145px;object-fit:cover;background:#17201c;display:block}
+.mod-body{padding:13px}
+.mod-body h3{margin:0 0 7px;font-size:17px}
+.mod-body p{color:var(--muted);font-size:14px;line-height:1.65;margin:0 0 10px;white-space:pre-wrap;overflow-wrap:anywhere}
+.meta{font-size:12px;color:var(--muted);margin-bottom:10px}
+.download{display:block;text-align:center;text-decoration:none;background:var(--accent);color:#07120c;font-weight:800;padding:10px;border-radius:9px}
+.download.disabled{opacity:.5;pointer-events:none}
+.admin-delete{width:100%;margin-top:8px;padding:8px;background:#401a20;color:#ffdce0;border:1px solid #7d2a36;border-radius:9px}
+.footer{border-top:1px solid var(--line);padding:20px 0 28px;text-align:center;color:var(--muted);font-size:13px}
+.backdrop{position:fixed;inset:0;z-index:10;background:#000b;display:none;align-items:center;justify-content:center;padding:14px}
+.backdrop.show{display:flex}
+.modal{width:min(540px,100%);max-height:88vh;overflow:auto;background:#101718;border:1px solid #2b3b34;border-radius:16px;padding:17px}
+.modal h2{margin-bottom:12px}
+label{display:block;font-size:13px;color:#c3d0c9;margin:11px 0 5px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.btn{border:1px solid var(--line);background:#1a2422;color:var(--text);padding:10px 13px;border-radius:9px}
+.btn.primary{background:var(--accent);color:#06120b;border-color:var(--accent);font-weight:800}
+.notice{font-size:13px;line-height:1.7;color:#e2d6aa;background:#292516;border:1px solid #4c4324;padding:10px;border-radius:9px;margin:10px 0}
+.status{font-size:13px;line-height:1.7;margin-top:10px;overflow-wrap:anywhere}
+.admin-list{display:grid;gap:8px;margin-top:16px}
+.admin-item{border:1px solid var(--line);padding:10px;border-radius:10px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.admin-item span{overflow-wrap:anywhere}
+@media(max-width:600px){.section-head{align-items:stretch;flex-direction:column}.search{max-width:none}.hero{padding-top:18px}.banner{height:100px}.mods{grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:9px}.mod-img{height:115px}.mod-body{padding:10px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="topbar">
+  <div class="brand">IRAQI MODS <span class="accent">🇮🇶</span></div>
+  <div class="menu-wrap"><button class="dots" id="menuBtn" aria-label="القائمة">⋮</button>
+    <div class="menu" id="menu"><button id="settingsBtn">⚙️ الإعدادات / Settings</button><button id="adminBtn">🔐 أنا الأدمن / I'm admin</button></div>
+  </div>
+</header>
+<main>
+<section class="hero">
+  <img class="avatar hidden" id="avatar" alt="صورة القناة">
+  <div class="avatar placeholder" id="avatarPlaceholder">IM</div>
+  <h1 id="siteTitle">IRAQI MODS <span class="accent">🇮🇶</span></h1>
+  <p class="sub" id="siteDesc">مكتبة مودات ماينكرافت بيدروك العراقية — اكتشف مودات جديدة واستمتع باللعب.</p>
+  <nav class="socials">
+    <a id="youtubeLink" href="https://youtube.com/@iraqi.mods1" target="_blank" rel="noopener">▶ YouTube</a>
+    <a id="instagramLink" href="https://www.instagram.com/iraqi.mods" target="_blank" rel="noopener">◎ Instagram</a>
+    <a id="tiktokLink" href="https://www.tiktok.com/@iraqi.mods" target="_blank" rel="noopener">♪ TikTok</a>
+  </nav>
+  <div class="banner"><img id="bannerImg" alt="بانر الموقع"><div class="banner-text" id="bannerText">MINECRAFT • MODS • IRAQ</div></div>
+</section>
+<section id="library">
+  <div class="section-head"><h2 id="libraryTitle">مكتبة المودات</h2><input class="search" id="search" type="search" placeholder="ابحث عن مود..." aria-label="بحث"></div>
+  <div class="mods" id="mods"><div class="empty">جاري تحميل المودات...</div></div>
+</section>
+</main>
+<footer class="footer">IRAQI MODS 🇮🇶 · <span id="footerText">صُنع لعشّاق ماينكرافت</span></footer>
+</div>
+<div class="backdrop" id="modalBack"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <h2 id="modalTitle">الإعدادات</h2><div id="modalContent"></div>
+  <div class="actions"><button class="btn" id="closeModal">إغلاق</button></div>
+</section></div>
+<script>
+const $=s=>document.querySelector(s);
+const defaults={lang:'ar',accent:'#42f5a7',title:'IRAQI MODS 🇮🇶',description:'مكتبة مودات ماينكرافت بيدروك العراقية — اكتشف مودات جديدة واستمتع باللعب.',youtube:'https://youtube.com/@iraqi.mods1',instagram:'https://www.instagram.com/iraqi.mods',tiktok:'https://www.tiktok.com/@iraqi.mods',avatar:'',banner:''};
+let settings;try{settings={...defaults,...JSON.parse(localStorage.getItem('iraqiModsSettingsV2')||'{}')}}catch{settings={...defaults}}
+let mods=[],adminPassword='',isAdmin=false;
+const tr=(ar,en)=>settings.lang==='ar'?ar:en;
+function saveSettings(){try{localStorage.setItem('iraqiModsSettingsV2',JSON.stringify(settings))}catch{}}
+function hexRgba(hex,a){let h=hex.replace('#','');if(h.length===3)h=h.split('').map(x=>x+x).join('');let n=parseInt(h,16);return `rgba(${n>>16},${(n>>8)&255},${n&255},${a})`}
+function apply(){document.documentElement.lang=settings.lang;document.documentElement.dir=settings.lang==='ar'?'rtl':'ltr';document.documentElement.style.setProperty('--accent',settings.accent);$('#siteTitle').textContent=settings.title;$('#siteDesc').textContent=settings.description;$('#youtubeLink').href=settings.youtube;$('#instagramLink').href=settings.instagram;$('#tiktokLink').href=settings.tiktok;$('#libraryTitle').textContent=tr('مكتبة المودات','Mod Library');$('#search').placeholder=tr('ابحث عن مود...','Search mods...');$('#footerText').textContent=tr('صُنع لعشّاق ماينكرافت','Made for Minecraft fans');$('#avatar').src=settings.avatar;$('#avatar').classList.toggle('hidden',!settings.avatar);$('#avatarPlaceholder').classList.toggle('hidden',!!settings.avatar);$('#bannerImg').src=settings.banner;$('#bannerImg').style.display=settings.banner?'block':'none';$('#bannerText').style.display=settings.banner?'none':'grid';renderMods()}
+function openModal(title,html,after){$('#modalTitle').textContent=title;$('#modalContent').innerHTML=html;$('#modalBack').classList.add('show');if(after)after()}
+function closeModal(){$('#modalBack').classList.remove('show')}
+$('#closeModal').onclick=closeModal;$('#modalBack').onclick=e=>{if(e.target===$('#modalBack'))closeModal()};
+$('#menuBtn').onclick=()=>$('#menu').classList.toggle('open');document.addEventListener('click',e=>{if(!e.target.closest('.menu-wrap'))$('#menu').classList.remove('open')});
+$('#settingsBtn').onclick=()=>openModal(tr('الإعدادات','Settings'),`
+<label>${tr('لغة الموقع','Website language')}</label><select class="field" id="lang"><option value="ar">العربية</option><option value="en">English</option></select>
+<label>${tr('لون الإضاءة','Accent colour')}</label><input class="field" type="color" id="accent">
+<label>${tr('وصف الموقع','Site description')}</label><input class="field" id="descField" maxlength="240">
+<div class="actions"><button class="btn primary" id="saveSettings">${tr('حفظ','Save')}</button></div>`,()=>{$('#lang').value=settings.lang;$('#accent').value=settings.accent;$('#descField').value=settings.description;$('#saveSettings').onclick=()=>{settings.lang=$('#lang').value;settings.accent=$('#accent').value;settings.description=$('#descField').value.trim()||defaults.description;saveSettings();apply();closeModal()}});
+async function api(method='GET',body=null,id=null){let url='/api/mods'+(id?'?id='+encodeURIComponent(id):'');let opts={method,headers:{}};if(body!==null){opts.headers['Content-Type']='application/json';opts.headers['X-Admin-Password']=adminPassword;opts.body=JSON.stringify(body)}else if(method!=='GET'){opts.headers['X-Admin-Password']=adminPassword}let r=await fetch(url,opts);let result;try{result=await r.json()}catch{result={error:'استجابة غير مفهومة من الخادم'}}if(!r.ok)throw new Error(result.error||('HTTP '+r.status));return result}
+function norm(row){return {id:row.id,name:row.name||'',description:row.description||'',image:row.image_url||row.image||'',url:row.download_url||row.url||'',size:row.file_size||row.size||''}}
+async function loadMods(){try{const rows=await api('GET');mods=Array.isArray(rows)?rows.map(norm):[];renderMods()}catch(e){$('#mods').innerHTML='<div class="empty">تعذر تحميل المودات حالياً. '+escapeHtml(e.message)+'</div>'}}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function renderMods(){const q=$('#search').value.trim().toLowerCase();const list=mods.filter(m=>(m.name+' '+m.description).toLowerCase().includes(q));$('#mods').innerHTML='';if(!list.length){const d=document.createElement('div');d.className='empty';d.textContent=mods.length?tr('ما لقينا مود بهذا الاسم.','No mods matched your search.'):tr('ماكو مودات مضافة حالياً. ترقّب الإضافات الجديدة!','No mods added yet. Check back soon!');$('#mods').append(d);return}for(const m of list){const c=document.createElement('article');c.className='mod-card';if(m.image){const im=document.createElement('img');im.className='mod-img';im.alt=m.name;im.loading='lazy';im.src=m.image;c.append(im)}const b=document.createElement('div');b.className='mod-body';const h=document.createElement('h3');h.textContent=m.name;const p=document.createElement('p');p.textContent=m.description;const meta=document.createElement('div');meta.className='meta';meta.textContent=tr('حجم الملف: ','File size: ')+(m.size||tr('غير محدد','Not specified'));const a=document.createElement('a');a.className='download'+(m.url?'':' disabled');a.textContent=tr('تحميل المود','Download mod');a.href=m.url||'#';a.target='_blank';a.rel='noopener';b.append(h,p,meta,a);if(isAdmin){const del=document.createElement('button');del.className='admin-delete';del.textContent=tr('حذف المود','Delete mod');del.onclick=()=>deleteMod(m);b.append(del)}c.append(b);$('#mods').append(c)}}
+$('#search').addEventListener('input',renderMods);
+function adminPanel(){openModal(tr('لوحة الأدمن','Admin panel'),`
+<div class="notice">${tr('أضف موداً. رابط الصورة يجب أن يكون رابطاً مباشراً للصورة حالياً.','Add a mod. Image must currently be a direct image URL.')}</div>
+<label>${tr('اسم المود *','Mod name *')}</label><input class="field" id="modName" maxlength="120">
+<label>${tr('الوصف','Description')}</label><textarea class="field" id="modDesc" rows="3" maxlength="1500"></textarea>
+<label>${tr('رابط الصورة (اختياري)','Image URL (optional)')}</label><input class="field" id="modImage" type="url">
+<label>${tr('رابط التحميل *','Download URL *')}</label><input class="field" id="modUrl" type="url" required>
+<label>${tr('حجم الملف','File size')}</label><input class="field" id="modSize" maxlength="40" placeholder="مثال: 12 MB">
+<div class="actions"><button class="btn primary" id="addMod">${tr('إضافة المود','Add mod')}</button><button class="btn" id="logout">${tr('تسجيل الخروج','Log out')}</button></div>
+<div class="status" id="adminStatus"></div><div class="admin-list" id="adminList"></div>`,()=>{$('#addMod').onclick=addMod;$('#logout').onclick=()=>{adminPassword='';isAdmin=false;renderMods();closeModal()};showAdminList()})}
+function showAdminList(){const box=$('#adminList');if(!box)return;box.innerHTML='';mods.forEach(m=>{const row=document.createElement('div');row.className='admin-item';const name=document.createElement('span');name.textContent=m.name;const del=document.createElement('button');del.className='btn';del.textContent=tr('حذف','Delete');del.onclick=()=>deleteMod(m);row.append(name,del);box.append(row)})}
+async function addMod(){const name=$('#modName').value.trim(),description=$('#modDesc').value.trim(),image_url=$('#modImage').value.trim(),download_url=$('#modUrl').value.trim(),file_size=$('#modSize').value.trim();const status=$('#adminStatus');if(!name||!download_url){status.textContent=tr('اسم المود ورابط التحميل مطلوبان.','Name and download URL are required.');return}try{status.textContent=tr('جاري الإضافة...','Adding...');await api('POST',{name,description,image_url,download_url,file_size});await loadMods();$('#modName').value='';$('#modDesc').value='';$('#modImage').value='';$('#modUrl').value='';$('#modSize').value='';status.textContent=tr('تمت إضافة المود.','Mod added.');showAdminList()}catch(e){status.textContent=tr('فشلت الإضافة: ','Add failed: ')+e.message}}
+async function deleteMod(m){if(!confirm(tr('متأكد تريد حذف المود؟','Delete this mod?')))return;try{await api('DELETE',null,m.id);await loadMods();if($('#adminList'))showAdminList()}catch(e){alert(tr('فشل الحذف: ','Delete failed: ')+e.message)}}
+$('#adminBtn').onclick=()=>{openModal(tr('دخول الأدمن','Admin sign in'),`<label>${tr('كلمة مرور الأدمن','Admin password')}</label><input class="field" id="adminPass" type="password" autocomplete="current-password"><div class="status" id="loginStatus"></div><div class="actions"><button class="btn primary" id="loginBtn">${tr('دخول','Sign in')}</button></div>`,()=>{$('#loginBtn').onclick=async()=>{const pass=$('#adminPass').value;if(!pass){$('#loginStatus').textContent=tr('اكتب كلمة المرور.','Enter the password.');return}adminPassword=pass;$('#loginStatus').textContent=tr('جاري التحقق...','Checking...');try{const check=await fetch('/api/mods?id=0',{method:'DELETE',headers:{'X-Admin-Password':adminPassword}});if(check.status===401)throw new Error('BAD_PASSWORD');if(check.status!==400)throw new Error('SERVER_ERROR');$('#loginStatus').textContent=tr('تم التحقق.','Verified.');isAdmin=true;await loadMods();adminPanel()}catch(e){adminPassword='';$('#loginStatus').textContent=e.message==='BAD_PASSWORD'?tr('كلمة المرور غير صحيحة.','Incorrect password.'):tr('تعذر التحقق. تأكد من إعدادات الخادم.','Could not verify. Check server settings.')}}})};
+apply();loadMods();
+</script>
+</body>
+</html>
